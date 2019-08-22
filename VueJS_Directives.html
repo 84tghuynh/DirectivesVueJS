@@ -27,6 +27,16 @@
     <!-- 5) Pre-Populate this input with your name (set the "value" attribute) -->
     <div>
         <input type="text" v-bind:value="name">
+
+        <p> Two-way <b>v-model</b> binding for form input -- look at code for details </p>
+        <!-- Two-way binding for form input -->
+        <input type="text" v-model="name" >
+        <p>Two-way <b>v-model</b> binding for form input instead of two <b>v-bind & v-on </b> -- look at code for details </p>
+        <!-- Two-way binding for form input instead of two v-bind & v-on -->
+        <input
+            v-bind:value="name"
+            v-on:input="name = $event.target.value"
+        > 
     </div>   
 </div>
 <script>
