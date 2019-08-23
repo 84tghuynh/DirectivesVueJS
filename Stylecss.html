@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>VueJS</title>
+    <link rel="stylesheet" href="">
+    <script src="https://npmcdn.com/vue/dist/vue.js"></script>
+  <!-- <script src="vue.js"></script> -->
+  
+  <style>
+    #effect {
+      width: 100px;
+      height: 100px;
+      border: 1px solid black;
+    }
+
+    .highlight {
+      background-color: red;
+      width: 200px !important;
+    }
+
+    .shrink {
+      background-color: gray;
+      width: 50px !important;
+    }
+
+    .green {
+      background-color: green;
+      height: 20px;
+      width: 100px !important;
+    }
+
+    .blue {
+      background-color: blue;
+      height: 30px;
+      width: 100px !important;
+    }
+
+    .yellow {
+      background-color: yellow;
+      height: 30px;
+      width: 100px !important;
+    }
+
+    .magenta {
+      background-color: magenta;
+      height: 30px;
+      width: 100px !important;
+    }
+
+    .visible {
+      height: 300px;
+      width: 300px !important;
+    }
+    
+  </style>
+</head>
+<body>
+  <div id="exercise">
+    <!-- 1) Start the Effect with the Button. The Effect should alternate the "highlight" or "shrink" class 
+      on each new setInterval tick (attach respective class to the div with id "effect" below) -->
+    <div>
+      <button @click="startEffect">Start Effect</button>
+      <div id="effect" :class="effectClass"></div>
+    </div>
+    <!-- 2) Create a couple of CSS classes and attach them via the array syntax -->
+    <div :class="arrayClass">I got no class :(</div>
+    <div :class="[green_data, blue_data]">I got no class11111 :(</div>
+    <!-- 3) Let the user enter a class (create some example classes) and attach it -->
+    <div>
+      <input type="text" v-model="userClass">
+      <div :class="userClass">Let the user enter  <b>INPUT above</b> a class (create some example classes) and attach it</div>
+    </div>
+    <!-- 4) Let the user enter a class and enter true/ false for another class (create some example classes) and attach the classes -->
+    <div>
+      <input type="text" v-model="mangenta_data">
+      <input type="text" v-model="isValid">
+      <div :class="[mangenta_data, {visible: isValid}]">Let the user enter  <b>INPUT above</b> a class and enter true/ false for another class</div>
+    </div>
+    <!-- 5) Repeat 3) but now with values for styles (instead of class names). Attach the respective styles.  -->
+    <div>
+      <input type="text" v-model="myStyle.backgroundColor">
+      <div :style="myStyle"> now with values for styles with color of background: <b>INPUT above</b></div>
+    </div>
+    <!-- 6) Create a simple progress bar with setInterval and style bindings. Start it by hitting the below button. -->
+    <div>
+      <button  @click="startProgress">Start Progress</button>
+      <div :style="bar"></div>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#exercise',
+      data: {
+        effectClass: {
+          highlight: true, 
+          shrink: false
+        },
+        arrayClass: 
+          [{green: true}, {blue: false}],
+        green_data: 'green',
+        blue_data: 'blue',
+        mangenta_data: '',
+        userClass: '',
+        isValid: false,
+        myStyle: {
+          height: '80px',
+          width: '400px',
+          backgroundColor: 'yellow'
+        },
+        bar: {
+          backgroundColor: 'magenta',
+          height: '40px',
+          width:'0px'
+        }   
+      },
+      methods: {
+        startEffect: function() {
+          var vm = this;
+          setInterval(function(){
+            vm.effectClass.highlight = !vm.effectClass.highlight;
+            vm.effectClass.shrink = !vm.effectClass.shrink;
+          },1000)
+        },
+        startProgress: function() {
+          var vm = this;
+          var width = 0;
+          setInterval(function(){
+            width = width + 10;
+            vm.bar.width = width + 'px';
+          },1000)
+        }
+      },
+      
+    });
+
+  </script>
+</body>
+</html>
