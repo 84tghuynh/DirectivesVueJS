@@ -1,5 +1,5 @@
 # Directives of VueJS
-# Author: Truong Giang Huynh
+### Author: Truong Giang Huynh
 
 Download VueJS at https://vuejs.org/v2/guide/installation.html
 
